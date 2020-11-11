@@ -52,4 +52,24 @@ function addWordToDOM() {
     word.innerHTML = randomWord;
 }
 
+// update score
+function updateScore() {
+    score++;
+    scoreEl.innerHTML = score;
+}
+
 addWordToDOM();
+
+// evemt listeners
+
+text.addEventListener('input', e => {
+    const insertedText = e.target.value;
+
+    if(insertedText === randomWord) {
+        addWordToDOM();
+        updateScore();
+
+        // clear
+        e.target.value = '';
+    }
+});
