@@ -70,10 +70,20 @@ function createBox(item) {
     <p class="info">${text}</p>
  `;
 
-  //  @todo - speak event
+  box.addEventListener('click', () => {
+      setTextMessage(text);
+      speakText();
+
+    //   add active effect
+    box.classList.add('active');
+    setTimeout(() => box.classList.remove('active'), 800);
+  })
 
   main.appendChild(box);
 }
+
+// init speech synth
+const message = new SpeechSynthesisUtterance();
 
 // store voices
 let voices = [];
