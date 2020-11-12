@@ -100,6 +100,21 @@ function getVoices() {
     });
 }
 
+// set text
+function setTextMessage(text) {
+    message.text = text;
+}
+
+// set voice
+function setVoice(e) {
+    message.voice = voices.find(voice => voice.name === e.target.value);
+}
+
+// speak text
+function speakText() {
+    speechSynthesis.speak(message);
+}
+
 // voices changed
 speechSynthesis.addEventListener('voiceschanged', getVoices)
 
@@ -112,5 +127,14 @@ toggleBtn.addEventListener('click', () =>
 closeBtn.addEventListener('click', () =>
   document.getElementById('text-box').classList.remove('show'),
 );
+
+// change voice
+voicesSelect.addEventListener('change', setVoice);
+
+// read text button
+readBtn.addEventListener('click', () => {
+    setTextMessage(textarea.value);
+    speakText();
+})
 
 getVoices();
